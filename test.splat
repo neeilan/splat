@@ -1,0 +1,14 @@
+%expect-exit-code -9
+%expect-output-snippet "bye 123 bye"
+
+class Test < SomeOther {
+  init() {}
+}
+
+var x = 30;
+print(float(x));
+
+%begin-expected-output
+30.0
+%end-expected-output
+%expect-output-snippet " hello hii"
