@@ -9,6 +9,7 @@
 #include "exec.h"
 #include "strutil.h"
 
+using Directives::COMMENT;
 using Directives::EXPECT_OUTPUT;
 using Directives::EXPECT_SNIPPET;
 
@@ -42,7 +43,10 @@ int test(std::ifstream & f) {
         return 1;
       }
       expected_snippets.push_back(content.substr(content.find("\"") + 1, content.rfind("\"") - 2) );
-    } else {
+    } else if (starts_with(line, COMMENT)) {
+      // Ignore
+    }
+     else {
       source << line << std::endl;
     }
   }

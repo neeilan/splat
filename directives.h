@@ -4,6 +4,7 @@
 #include <string>
 
 namespace Directives {
+  const std::string COMMENT = "%%";
   const std::string EXPECT_OUTPUT = "%output";
   const std::string EXPECT_SNIPPET = "%snippet";
 }

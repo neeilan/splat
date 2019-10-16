@@ -5,9 +5,11 @@ if __name__ == '__main__':
   if key not in map:
     print("KeyError: key not found")
 
+%% This is a comment.
 %snippet "KeyError"
 
   l = ["a"]
   l[1]
 
+%% Accessing the second element leads to an IndexError:
 %snippet "list index out of range"
