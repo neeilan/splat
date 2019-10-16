@@ -1,0 +1,13 @@
+if __name__ == '__main__':
+  map = { 'b' : 'banana' }
+  key = 'a'
+
+  if key not in map:
+    print("KeyError: key not found")
+
+%expect-output-snippet "KeyError"
+
+  l = ["a"]
+  l[1]
+
+%expect-output-snippet "list index out of range"

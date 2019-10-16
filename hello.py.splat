@@ -1,0 +1,6 @@
+if __name__ == '__main__':
+  print("Hello, Splat")
+
+%begin-expected-output
+Hello, Splat
+%end-expected-output
