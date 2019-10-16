@@ -1,1 +1,1 @@
-g++ -o splat splat.cc exec.cc
+g++ -o splat splat.cc exec.cc strutil.cc cli.cc

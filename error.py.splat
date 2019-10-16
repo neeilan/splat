@@ -5,9 +5,9 @@ if __name__ == '__main__':
   if key not in map:
     print("KeyError: key not found")
 
-%expect-output-snippet "KeyError"
+%snippet "KeyError"
 
   l = ["a"]
   l[1]
 
-%expect-output-snippet "list index out of range"
+%snippet "list index out of range"
