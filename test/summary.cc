@@ -31,13 +31,11 @@ TEST(TestfileSummaryTest, SimpleSummary) {
   std::string output = "15\n";
 
   EXPECT_FALSE(summary.parse_failed);
+  EXPECT_TRUE(summary.output_set);
+  EXPECT_FALSE(summary.exit_code_set);
 
   EXPECT_EQ(src.str(), summary.source);
-
-  EXPECT_TRUE(summary.output_set);
   EXPECT_EQ(output, summary.output);
-
-  EXPECT_FALSE(summary.exit_code_set);
 }
 
 TEST(TestfileSummaryTest, MultipleOutputs) {
@@ -66,11 +64,9 @@ TEST(TestfileSummaryTest, MultipleOutputs) {
   std::string output = "15\n10\n";
 
   EXPECT_FALSE(summary.parse_failed);
+  EXPECT_TRUE(summary.output_set);
+  EXPECT_FALSE(summary.exit_code_set);
 
   EXPECT_EQ(src.str(), summary.source);
-
-  EXPECT_TRUE(summary.output_set);
   EXPECT_EQ(output, summary.output);
-
-  EXPECT_FALSE(summary.exit_code_set);
 }
