@@ -1,0 +1,17 @@
+my_str = "hello"
+print(my_str)
+%output
+hello
+%output
+
+my_str += " there"
+print(my_str)
+%output
+hello there
+%output
+
+my_str += " friend"
+print(my_str)
+%output
+hello there friend
+%output  <- This %output tag at the end end of a file is optionalt
