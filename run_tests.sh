@@ -1,3 +1,5 @@
 cmake -Dtest=ON
-make && ./RunUnitTests
+make
+printf "\n\nTEST OUTPUT:\n\n"
+./RunUnitTests
 make clean

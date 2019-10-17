@@ -3,6 +3,7 @@ CMakeFiles
 Testing
 CMakeCache.txt
 *.cmake
+Makefile
 
 # Prerequisites
 *.d

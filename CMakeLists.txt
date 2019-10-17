@@ -8,9 +8,9 @@ set(CMAKE_CXX_FLAGS "-g -Wall -Werror")
 #----------------------------------------------------------------------------
 # Define project sources and includes
 #----------------------------------------------------------------------------
-set(COMMON_INCLUDES ${PROJECT_SOURCE_DIR})
+set(COMMON_INCLUDES ${PROJECT_SOURCE_DIR}/src)
 include_directories(${COMMON_INCLUDES})
-file(GLOB SRC_FILES ${PROJECT_SOURCE_DIR}/*.cc)
+file(GLOB SRC_FILES ${PROJECT_SOURCE_DIR}/src/*.cc)
 file(GLOB TEST_SRC_FILES ${PROJECT_SOURCE_DIR}/test/*.cc)
 list(REMOVE_ITEM SRC_FILES ${PROJECT_SOURCE_DIR}/cli.cc)
 
@@ -20,7 +20,7 @@ set(CMAKE_CXX_STANDARD 11)
 # Normal Libraries & Executables
 ################################
 add_library(splat_lib ${SRC_FILES})
-add_executable(splat ${PROJECT_SOURCE_DIR}/cli.cc)
+add_executable(splat ${PROJECT_SOURCE_DIR}/src/cli.cc)
 
 target_link_libraries(splat splat_lib)
 
