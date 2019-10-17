@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <istream>
 #include <string>
 #include <sstream>
