@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 2.8)
 set(PROJECT_NAME splat)
 project(${PROJECT_NAME})
 
-set(CMAKE_CXX_FLAGS "-g -Wall -Werror")
+set(CMAKE_CXX_FLAGS "-g -Wall -pedantic -Werror -Wno-variadic-macros -Wno-long-long -Wno-shadow")
 
 #----------------------------------------------------------------------------
 # Define project sources and includes
