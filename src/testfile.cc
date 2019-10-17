@@ -15,10 +15,8 @@ using Directives::EXPECT_EXIT_CODE;
 
 Testfile::Summary Testfile::parse(std::istream & f) {
   Summary summary;
-
   std::ostringstream source;
   std::ostringstream output;
-  std::vector<std::string> snippets;
 
   for( std::string line; getline( f, line ); )
   {
@@ -37,7 +35,7 @@ Testfile::Summary Testfile::parse(std::istream & f) {
         summary.parse_error = "Expected snippet not enclosed in double quotes: " + content;
         return summary;
       }
-      snippets.push_back(content.substr(content.find("\"") + 1, content.rfind("\"") - 2) );
+      summary.snippets.push_back(content.substr(content.find("\"") + 1, content.rfind("\"") - 2) );
     } else if (starts_with(line, COMMENT)) {
       // Ignore
     }

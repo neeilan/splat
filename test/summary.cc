@@ -70,3 +70,27 @@ TEST(TestfileSummaryTest, MultipleOutputs) {
   EXPECT_EQ(src.str(), summary.source);
   EXPECT_EQ(output, summary.output);
 }
+
+TEST(TestfileSummaryTest, Snippets) {
+  osstream tf;
+
+  tf << "a = [1]"     << endl
+     << "b = a[3]"    << endl
+     << "%snippet \"IndexError\""
+     << endl;
+
+  std::istringstream testfile(tf.str());
+  Summary summary = Testfile::parse(testfile);
+
+  osstream src;
+  src << "a = [1]"   << endl
+      << "b = a[3]"  << endl;
+
+  EXPECT_FALSE(summary.parse_failed);
+  EXPECT_FALSE(summary.output_set);
+  EXPECT_FALSE(summary.exit_code_set);
+
+  EXPECT_EQ(src.str(), summary.source);
+  EXPECT_EQ(1, summary.snippets.size());
+  EXPECT_EQ("IndexError", summary.snippets[0]);
+}
