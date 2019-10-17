@@ -7,6 +7,7 @@ namespace Directives {
   const std::string COMMENT = "%%";
   const std::string EXPECT_OUTPUT = "%output";
   const std::string EXPECT_SNIPPET = "%snippet";
+  const std::string EXPECT_EXIT_CODE = "%exit";
 }
 
 #endif // _SPLAT_DIRECTIVES_H_ 
