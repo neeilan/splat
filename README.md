@@ -1,5 +1,7 @@
 # splat
 
+[![Build Status](https://travis-ci.org/neeilan/splat.svg?branch=master)](https://travis-ci.org/neeilan/splat)
+
 splat (<b>S</b>imple <b>P</b>rogramming <b>La</b>nguage <b>T</b>ester is a tool to write functional tests for programming language implementations.
 
 splat enables writing tests for a language using that language itself; This results in a reusable test suite that may be used to test any compiler/interpreter for that language regardless of implementation details.
