@@ -31,7 +31,7 @@ int test(std::ifstream & f) {
 
   bool missing_snippet = false;
   for (const std::string & snippet : tf.snippets) {
-    if (output.find(snippet) == -1) {
+    if (output.find(snippet) == std::string::npos) {
       missing_snippet = has_error = true;
       cout << "DID NOT FIND SNIPPET: '" << snippet << "'" << std::endl;
     }
