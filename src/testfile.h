@@ -3,22 +3,23 @@
 
 #include <string>
 #include <vector>
-#include <fstream>
+#include <istream>
 
 namespace Testfile {
 
   struct Summary {
     std::string source;
-    bool output_set;
     std::string output;
-    bool exit_code_set;
     int exit_code;
     std::vector<std::string> snippets;
-    int parse_failed = 0;
     std::string parse_error;
+
+    bool parse_failed = false;
+    bool output_set = false;
+    bool exit_code_set = false;
   };
 
-  Testfile::Summary parse(std::ifstream & f);
+  Testfile::Summary parse(std::istream & f);
 
 }
 

@@ -1,4 +1,4 @@
-#include <fstream>
+#include <istream>
 #include <string>
 #include <sstream>
 #include <stdlib.h> // for atoi
@@ -13,7 +13,7 @@ using Directives::EXPECT_OUTPUT;
 using Directives::EXPECT_SNIPPET;
 using Directives::EXPECT_EXIT_CODE;
 
-Testfile::Summary Testfile::parse(std::ifstream & f) {
+Testfile::Summary Testfile::parse(std::istream & f) {
   Summary summary;
 
   std::ostringstream source;
