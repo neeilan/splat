@@ -8,7 +8,7 @@ splat enables writing tests for a language using that language itself; This resu
 
 A <i>testfile</i> contains a program in the target language, annotated with splat <i>directives</i>.
 
-Testfiles can be named anything, but we suggest the extension of the format `.<language>.splat`.
+Testfiles can be named anything, but we suggest using an extension of the format `.<language>.splat`.
 For example, a testfile for a Python program gets a `.py.splat` extension, while a C testfile gets `.c.splat`. 
 
 Here is a simple test for a Python implementation:
@@ -35,10 +35,12 @@ Hello, splat
 
 ## Directives
 
-`%output`
+`%output` - Specifies the expected output. All lines between two `%output` directives (called an <i>output section</i>) are considered part of the expected output for the program. A testfile can have more than one output section. 
+At the end of a testfile, a single `%output` tag may be used to indicate that all the following lines comprise an output section.
+Note: splat merges stdout and stderr into a single output stream for comparison purposes.
 
-`%snippet`
+`%snippet` - The snippet tag is followed by a quoted string known as the <i>snippet text</i> (for example, in `%snippet "IndexError"`, the snippet text is 'IndexError'). A testfile can contain 0 or more snippets texts. splat checks that each snippet appears <i>at least once</i> in the output. As such, they are useful for confirming that the implementation under test reports an error, without having to match the error message exactly.
 
 `%exit-code`
 
-`%%`
+`%%` - Specifies a splat comment. Any line starting with `%%` is ignored.
