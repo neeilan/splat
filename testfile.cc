@@ -16,7 +16,6 @@ using Directives::EXPECT_EXIT_CODE;
 Testfile::Summary Testfile::parse(std::ifstream & f) {
   Summary summary;
 
-  int expected_exit_code = 0;
   std::ostringstream source;
   std::ostringstream output;
   std::vector<std::string> snippets;
