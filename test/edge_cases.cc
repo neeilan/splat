@@ -41,3 +41,34 @@ TEST(TestfileEdgeCasesTest, NoSource) {
   EXPECT_EQ("", summary.source);
   EXPECT_EQ("15\n", summary.output);
 }
+
+TEST(TestfileEdgeCasesTest, UnterminatedSnippetQuotes) {
+  osstream tf;
+
+  tf << "%snippet \"text" << endl
+     << "print(15)"       << endl
+     << "print(15)"       << endl
+     << "%output"         << endl;
+
+  std::istringstream testfile(tf.str());
+  Summary summary = Testfile::parse(testfile);
+
+
+  EXPECT_TRUE(summary.parse_failed);
+}
+
+TEST(TestfileEdgeCasesTest, ExtraSnippetQuotes) {
+  osstream tf;
+
+  tf << "%snippet \"text1\"23\"" << endl
+     << "print(15)"       << endl
+     << "print(15)"       << endl
+     << "%output"         << endl;
+
+  std::istringstream testfile(tf.str());
+  Summary summary = Testfile::parse(testfile);
+
+  EXPECT_FALSE(summary.parse_failed);
+  EXPECT_EQ(1, summary.snippets.size());
+  EXPECT_EQ("text1\"23", summary.snippets[0]);
+}

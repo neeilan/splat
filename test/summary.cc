@@ -36,6 +36,7 @@ TEST(TestfileSummaryTest, SimpleSummary) {
 
   EXPECT_EQ(src.str(), summary.source);
   EXPECT_EQ(output, summary.output);
+  EXPECT_EQ("", summary.src_extension);
 }
 
 TEST(TestfileSummaryTest, MultipleOutputs) {
@@ -69,15 +70,16 @@ TEST(TestfileSummaryTest, MultipleOutputs) {
 
   EXPECT_EQ(src.str(), summary.source);
   EXPECT_EQ(output, summary.output);
+  EXPECT_EQ("", summary.src_extension);
 }
 
 TEST(TestfileSummaryTest, Snippets) {
   osstream tf;
 
-  tf << "a = [1]"     << endl
-     << "b = a[3]"    << endl
-     << "%snippet \"IndexError\""
-     << endl;
+  tf << "a = [1]"                   << endl
+     << "b = a[3]"                  << endl
+     << "%snippet \"IndexError\""   << endl
+     << "%snippet \"AnotherError\"" << endl;
 
   std::istringstream testfile(tf.str());
   Summary summary = Testfile::parse(testfile);
@@ -91,6 +93,21 @@ TEST(TestfileSummaryTest, Snippets) {
   EXPECT_FALSE(summary.exit_code_set);
 
   EXPECT_EQ(src.str(), summary.source);
-  EXPECT_EQ(1, summary.snippets.size());
+  EXPECT_EQ(2, summary.snippets.size());
   EXPECT_EQ("IndexError", summary.snippets[0]);
+  EXPECT_EQ("AnotherError", summary.snippets[1]);
+  EXPECT_EQ("", summary.src_extension);
+}
+
+TEST(TestfileSummaryTest, SourceExtension) {
+  osstream tf;
+
+  tf << "class A {}"                  << endl
+     << "%src-extension \".custom\""  << endl;
+
+  std::istringstream testfile(tf.str());
+  Summary summary = Testfile::parse(testfile);
+
+  EXPECT_FALSE(summary.parse_failed);
+  EXPECT_EQ(".custom", summary.src_extension);
 }
