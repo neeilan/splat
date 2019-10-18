@@ -42,7 +42,7 @@ Testfile::Summary Testfile::parse(std::istream & f) {
       std::string content = trim_prefix(line, SRC_EXTENSION);
       if (std::count(content.begin(), content.end(), '"') < 2) {
         summary.parse_failed = true;
-        summary.parse_error = "Expected source file extension not enclosed in double quotes: " + content;
+        summary.parse_error = "Source file extension not enclosed in double quotes: " + content;
         return summary;
       }
       summary.src_extension = (content.substr(content.find("\"") + 1, content.rfind("\"") - 2) );
