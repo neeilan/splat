@@ -1,0 +1,11 @@
+%src-extension ".c"
+
+#include <stdio.h>
+
+int main() {
+  printf("%s\n", "Hello, splat!");
+  return 0;
+}
+
+%output
+Hello, splat!
