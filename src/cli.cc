@@ -4,11 +4,12 @@
 #include "splat.h"
 
 int main(int argc, char * argv[]) {
-  if (argc < 2) {
-    std::cout << "Usage: splat <run script> <test program>" << std::endl;
+  if (argc < 3) {
+    std::cout << "Usage: splat language_path testfile" << std::endl;
     return 1;
   }
 
-  std::ifstream testfile(argv[1]);
-  return test(testfile);
+  std::ifstream testfile(argv[2]);
+
+  return test(argv[1], testfile);
 }

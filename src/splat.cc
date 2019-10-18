@@ -8,15 +8,17 @@
 using std::cout;
 using std::endl;
 
-int test(std::ifstream & f) {
-  Testfile::Summary tf = Testfile::parse(f);
+int test(std::string language_path, std::ifstream & testfile) {
+  Testfile::Summary tf = Testfile::parse(testfile);
 
   std::string srcfile = ".splat_source" + tf.src_extension;
   std::ofstream outfile (srcfile.c_str());
   outfile << tf.source;
   outfile.close(); 
 
-  std::string command = "./examples/bind_gcc.sh " + srcfile + " 2>&1";
+  // Invoke the language binary/script, while redirecting stderr
+  // to stdout.
+  std::string command = language_path + " " + srcfile + " 2>&1";
   std::string output = execute(command);
 
   remove(srcfile.c_str());
