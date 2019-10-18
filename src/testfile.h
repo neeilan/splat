@@ -9,6 +9,7 @@ namespace Testfile {
 
   struct Summary {
     std::string source;
+    std::string src_extension;
     std::string output;
     int exit_code;
     std::vector<std::string> snippets;

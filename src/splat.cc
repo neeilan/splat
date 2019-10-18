@@ -11,15 +11,15 @@ using std::endl;
 int test(std::ifstream & f) {
   Testfile::Summary tf = Testfile::parse(f);
 
-  const char * srcfile = ".splat_source";
-  std::ofstream outfile (srcfile);
+  std::string srcfile = ".splat_source" + tf.src_extension;
+  std::ofstream outfile (srcfile.c_str());
   outfile << tf.source;
   outfile.close(); 
 
-  std::string command = "/usr/bin/python .splat_source 2>&1";
+  std::string command = "./examples/bind_gcc.sh " + srcfile + " 2>&1";
   std::string output = execute(command);
 
-  remove(srcfile);
+  remove(srcfile.c_str());
 
   bool has_error = false;
   if (tf.output_set && output != tf.output) {

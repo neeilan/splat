@@ -13,6 +13,7 @@ using Directives::COMMENT;
 using Directives::EXPECT_OUTPUT;
 using Directives::EXPECT_SNIPPET;
 using Directives::EXPECT_EXIT_CODE;
+using Directives::SRC_EXTENSION;
 
 Testfile::Summary Testfile::parse(std::istream & f) {
   Summary summary;
@@ -37,6 +38,14 @@ Testfile::Summary Testfile::parse(std::istream & f) {
         return summary;
       }
       summary.snippets.push_back(content.substr(content.find("\"") + 1, content.rfind("\"") - 2) );
+    } else if (starts_with(line, SRC_EXTENSION)) {
+      std::string content = trim_prefix(line, SRC_EXTENSION);
+      if (std::count(content.begin(), content.end(), '"') < 2) {
+        summary.parse_failed = true;
+        summary.parse_error = "Expected source file extension not enclosed in double quotes: " + content;
+        return summary;
+      }
+      summary.src_extension = (content.substr(content.find("\"") + 1, content.rfind("\"") - 2) );
     } else if (starts_with(line, COMMENT)) {
       // Ignore
     }
