@@ -52,7 +52,7 @@ git clone https://github.com/neeilan/splat
 cd splat/
 ./build.sh
 ```
-The `splat` executable should not be available for use.
+The `splat` executable should now be available for use.
 
 To learn about writing testfiles (and whether your compiler needs a binding script), see [examples](./examples)
 
