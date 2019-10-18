@@ -13,4 +13,4 @@ Splat considers anything written to stdout and stderror to be output, and does n
 against the expected `%output` section of the testfile.
 
 
-![Splat's design](plat_highlevel.svg "High level design")
+![Splat's design](splat_highlevel.svg "High level design")
