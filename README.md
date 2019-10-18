@@ -50,7 +50,10 @@ Using splat to test your language is straightforward. It can be cloned and compi
 ```bash
 git clone https://github.com/neeilan/splat
 cd splat/
-cmake CMakeLists.txt
-make splat
+./build.sh
 ```
+The `splat` executable should not be available for use.
+
 To learn about writing testfiles (and whether your compiler needs a binding script), see [examples](./examples)
+
+To read about the internals of splat, see [doc/README](./doc/README.md)
