@@ -4,6 +4,7 @@ Testing
 CMakeCache.txt
 *.cmake
 Makefile
+splat
 
 # Prerequisites
 *.d
