@@ -19,7 +19,9 @@ int test(std::string language_path, std::ifstream & testfile) {
   // Invoke the language binary/script, while redirecting stderr
   // to stdout.
   std::string command = language_path + " " + srcfile + " 2>&1";
-  std::string output = execute(command);
+  std::string output;
+  int exit_code;
+  std::tie(output, exit_code) = execute(command);
 
   remove(srcfile.c_str());
 
@@ -29,6 +31,12 @@ int test(std::string language_path, std::ifstream & testfile) {
     cout << "Expected and actual outputs do not match." << std::endl;
     cout << "EXPECTED:" << std::endl << tf.output << std::endl;
     cout << "GOT:" << std::endl << output << std::endl;
+  }
+  if (tf.exit_code_set && exit_code != tf.exit_code) {
+    has_error = true;
+    cout << "Expected and actual exit codes do not match." << std::endl;
+    cout << "EXPECTED:" <<  tf.exit_code << std::endl;
+    cout << "GOT:" << exit_code << std::endl;
   }
 
   bool missing_snippet = false;

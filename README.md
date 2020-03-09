@@ -43,6 +43,8 @@ Note: splat merges stdout and stderr into a single output stream for comparison 
 
 `%src-extension` - Specifies the file extension to be used for the ephemeral source file, in case the implementation under test requires a specific source file extension. Like `%snippet`, this tag is followed by a double-quoted string containing the extension (including the period character). For [example](https://github.com/neeilan/splat/blob/77fd432fe45dfeb34663e2d8c696974d758a3b47/examples/gcc_example.c.splat#L1), GCC often requires C files to have the .c extension, which the `%src-extension ".c"` line in the testfile ensures.
 
+`%exit` - Specifies the expected exit code. For example, `%exit 0` will fail the test if the program fails (i.e. returns a nonzero exit code). If no `%exit` directive is present, the program's exit code is ignored entirely.
+
 `%%` - Specifies a splat comment. Any line starting with `%%` is ignored.
 
 ## Usage
