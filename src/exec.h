@@ -2,7 +2,8 @@
 #define _SPLAT_EXEC_H_ 
 
 #include <string>
+#include <tuple>
 
-std::string execute(const std::string & command);
+std::tuple<std::string, int> execute(const std::string & command);
 
 #endif // _SPLAT_EXEC_H_ 

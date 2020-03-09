@@ -111,3 +111,17 @@ TEST(TestfileSummaryTest, SourceExtension) {
   EXPECT_FALSE(summary.parse_failed);
   EXPECT_EQ(".custom", summary.src_extension);
 }
+
+TEST(TestfileSummaryTest, ExitCode) {
+  osstream tf;
+
+  tf << "class A {}"                  << endl
+     << "%exit 123"                   << endl;
+
+  std::istringstream testfile(tf.str());
+  Summary summary = Testfile::parse(testfile);
+
+  EXPECT_FALSE(summary.parse_failed);
+  EXPECT_TRUE(summary.exit_code_set);
+  EXPECT_EQ(123, summary.exit_code);
+}
